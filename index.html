@@ -124,6 +124,24 @@ dialog .db{padding:6px 20px 20px;max-height:68vh;overflow:auto;font-size:16px}
 dialog .db h4{margin:16px 0 4px;color:var(--navy);font-size:17px}
 dialog .db p{margin:0;color:var(--mute)}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1457299166300614');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {content_name: 'X01 Smart Charging Separator 140W', value: 799, currency: 'BDT'});
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1457299166300614&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -282,6 +300,7 @@ dialog .db p{margin:0;color:var(--mute)}
   $('pl').addEventListener('click',function(){if(q<10){q++;calc()}});
   document.querySelectorAll('input[name=sh]').forEach(function(r){r.addEventListener('change',calc)});
   calc();
+  var ic=false;['nm','ph','ad'].forEach(function(i){$(i).addEventListener('focus',function(){if(ic)return;ic=true;try{fbq('track','InitiateCheckout',{value:calc().t,currency:'BDT',num_items:q})}catch(_){}})});
   document.addEventListener('click',function(e){
     var d=e.target.closest('[data-d]');if(d){var m=document.getElementById(d.dataset.d);if(m.showModal)m.showModal();else m.setAttribute('open','')}
     var x=e.target.closest('[data-x]');if(x)x.closest('dialog').close();
@@ -300,7 +319,9 @@ dialog .db p{margin:0;color:var(--mute)}
     fetch(URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)})
     .then(function(){
       $('tn').textContent=n;$('tq').textContent=q+' টি';$('tt').textContent='৳'+c.t;
-      $('go').disabled=false;show('thanks');
+      $('go').disabled=false;
+      try{fbq('track','Purchase',{value:c.t,currency:'BDT',content_name:'X01 Smart Charging Separator 140W',num_items:q})}catch(_){}
+      show('thanks');
     })
     .catch(function(){
       $('go').disabled=false;
